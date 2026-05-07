@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MergeTopos | Unificador de Levantamentos</title>
+    <meta name="description" content="Una e organize seus arquivos de levantamento topográfico TXT de forma rápida e profissional.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== LOGIN OVERLAY ===== -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card animate-slide-up">
+            <div class="login-logo">
+                <div class="logo-icon"></div>
+                <h1>Merge<span>Topos</span></h1>
+            </div>
+            <p class="login-subtitle">Acesso Restrito — faça login para continuar</p>
+
+            <form id="loginForm" class="login-form" autocomplete="off">
+                <div class="login-field">
+                    <label for="loginUser">Usuário</label>
+                    <input type="text" id="loginUser" placeholder="Digite seu usuário" autocomplete="username">
+                </div>
+                <div class="login-field">
+                    <label for="loginPass">Senha</label>
+                    <input type="password" id="loginPass" placeholder="Digite sua senha" autocomplete="current-password">
+                </div>
+                <p id="loginError" class="login-error" hidden>Usuário ou senha incorretos.</p>
+                <button type="submit" class="btn-login">Entrar</button>
+            </form>
+        </div>
+    </div>
+    <!-- ============================= -->
+    <div class="glass-background"></div>
+    <main class="container">
+        <header class="header animate-fade-in">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>Merge<span>Topos</span></h1>
+            </div>
+            <p class="subtitle">Unificador Inteligente de Pontos Topográficos</p>
+        </header>
+
+        <section class="upload-section animate-slide-up">
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-zone-content">
+                    <div class="icon">📂</div>
+                    <h3>Adicionar Levantamentos</h3>
+                    <p>Arraste vários arquivos TXT ou clique para selecionar</p>
+                    <input type="file" id="fileInput" accept=".txt" multiple hidden>
+                    <button class="btn-select" onclick="document.getElementById('fileInput').click()">Selecionar Arquivos</button>
+                </div>
+            </div>
+            <div class="file-list" id="fileList">
+                <!-- Arquivos selecionados aparecerão aqui -->
+            </div>
+        </section>
+
+        <section class="action-section animate-fade-in">
+            <button id="processBtn" class="btn-primary" disabled>
+                <span class="btn-text">Processar e Organizar Pontos</span>
+                <div class="loader" hidden></div>
+            </button>
+        </section>
+
+        <section id="resultSection" class="result-section" hidden>
+            <div class="result-card animate-slide-up">
+                <div class="result-header">
+                    <h3>Resultado Final</h3>
+                    <button id="downloadBtn" class="btn-download">
+                        <span class="icon">📥</span> Baixar Novo TXT
+                    </button>
+                </div>
+                <div class="preview-container">
+                    <table id="previewTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Descrição</th>
+                                <th>Norte (N)</th>
+                                <th>Leste (E)</th>
+                                <th>Altitude (H)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewBody">
+                            <!-- Pontos aparecerão aqui -->
+                        </tbody>
+                    </table>
+                </div>
+                <p class="stats" id="pointStats"></p>
+                <div class="result-actions">
+                    <button id="showAllBtn" class="btn-outline" hidden>Ver Todos os Pontos</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer animate-fade-in">
+        <p>&copy; <span id="year">2026</span> MergeTopos - Desenvolvido por Ariel Rocha</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
